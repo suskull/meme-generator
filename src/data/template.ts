@@ -34,7 +34,7 @@ export const DEFAULT_MEME_STATE: MemeState = {
     },
     {
       id: '7',
-      text: 'hahaha, không có gì đâu. Đồng nghiệp với nhau mà 1008567447 vcb',
+      text: 'hahaha, không có gì đâu. Đồng nghiệp với nhau mà 19030753697011 tcb',
       type: 'received',
       image: {
         url: '/assets/images/default-qr.png',
