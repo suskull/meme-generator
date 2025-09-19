@@ -45,9 +45,9 @@ export const DEFAULT_MEME_STATE: MemeState = {
     }
   ],
   metadata: {
-    contactName: 'Bánh',
+    contactName: '3T',
     timestamp: '24 Jul 11:49 PM',
-    phoneNumber: '1466',
+    phoneNumber: '+84123456789',
     platform: 'SMS'
   }
 };
