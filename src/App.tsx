@@ -4,7 +4,6 @@ import { MemeImageGenerator, MemeImageGeneratorRef } from './components/MemeImag
 import { MetadataEditor } from './components/MetadataEditor';
 import { useHtmlToImage } from './hooks/useHtmlToImage';
 import { useImageGeneration } from './hooks/useImageGeneration';
-import { useScreenCapture } from './hooks/useScreenCapture';
 import { useMemeState } from './hooks/useMemeState';
 
 function App() {
@@ -36,15 +35,6 @@ function App() {
   } = useHtmlToImage({
     defaultFilename: 'vietnamese-meme-html.png'
   });
-
-  const {
-    isCapturing,
-    downloadScreenCapture,
-    checkCompatibility: checkCaptureCompatibility
-  } = useScreenCapture({
-    defaultFilename: 'vietnamese-meme-screenshot.png'
-  });
-
 
   const [showMetadataEditor, setShowMetadataEditor] = useState(false);
   const imageGeneratorRef = useRef<MemeImageGeneratorRef>(null);
@@ -165,50 +155,6 @@ function App() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                       <span>HTML-to-Image</span>
-                    </>
-                  )}
-                </button>
-
-                {/* Screen Capture Download (New Method) */}
-                <button
-                  onClick={async () => {
-                    try {
-                      console.log('Screen capture download clicked');
-                      const compatibility = checkCaptureCompatibility();
-
-                      if (!compatibility.isSupported) {
-                        alert(`Screen capture not supported: ${compatibility.missingFeatures.join(', ')}`);
-                        return;
-                      }
-
-                      if (compatibility.warnings.length > 0) {
-                        console.warn('Screen capture warnings:', compatibility.warnings);
-                      }
-
-                      await downloadScreenCapture();
-                      console.log('Screen capture completed successfully');
-                    } catch (error) {
-                      console.error('Screen capture failed:', error);
-                    }
-                  }}
-                  disabled={isCapturing}
-                  className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-green-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center space-x-2"
-                >
-                  {isCapturing ? (
-                    <>
-                      <svg className="animate-spin -ml-1 mr-2 h-3 w-3 sm:h-4 sm:w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      <span>Capturing...</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                      <span className="hidden sm:inline">Screen Capture</span>
-                      <span className="sm:hidden">Capture</span>
                     </>
                   )}
                 </button>
