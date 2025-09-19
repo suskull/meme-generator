@@ -317,7 +317,6 @@ describe('HtmlToImageGenerator', () => {
         height: 300,
         style: {
           fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-          fontSmooth: 'always',
           WebkitFontSmoothing: 'antialiased',
           MozOsxFontSmoothing: 'grayscale',
         },

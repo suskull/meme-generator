@@ -13,7 +13,7 @@ export const usePreviewUpdates = (
   const { debounceMs = 300, enableAnimations = true } = options;
   const [debouncedState, setDebouncedState] = useState(memeState);
   const [isUpdating, setIsUpdating] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     setIsUpdating(true);

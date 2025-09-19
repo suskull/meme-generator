@@ -288,10 +288,9 @@ export class HtmlToImageGenerator {
       style: {
         // Ensure fonts are rendered properly
         fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        fontSmooth: 'always',
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',
-      },
+      } as any,
     };
   }
 }

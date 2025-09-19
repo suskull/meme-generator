@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef, useState } from 'react';
+import { useRef, useImperativeHandle, forwardRef, useState } from 'react';
 import { MemeState } from '../types';
 import { SMSContainer } from './SMSContainer';
 

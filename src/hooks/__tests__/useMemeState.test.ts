@@ -45,9 +45,10 @@ describe('useMemeState', () => {
     
     expect(result.current.memeState.messages).toHaveLength(initialCount + 1);
     const newMessage = result.current.memeState.messages[result.current.memeState.messages.length - 1];
-    expect(newMessage.type).toBe('sent');
-    expect(newMessage.text).toBe('');
-    expect(newMessage.id).toBeDefined();
+    expect(newMessage).toBeDefined();
+    expect(newMessage!.type).toBe('sent');
+    expect(newMessage!.text).toBe('');
+    expect(newMessage!.id).toBeDefined();
   });
 
   it('adds new received message', () => {
@@ -60,7 +61,8 @@ describe('useMemeState', () => {
     
     expect(result.current.memeState.messages).toHaveLength(initialCount + 1);
     const newMessage = result.current.memeState.messages[result.current.memeState.messages.length - 1];
-    expect(newMessage.type).toBe('received');
+    expect(newMessage).toBeDefined();
+    expect(newMessage!.type).toBe('received');
   });
 
   it('deletes message correctly', () => {
@@ -112,7 +114,7 @@ describe('useMemeState', () => {
     
     // Invalid state - empty message ID
     act(() => {
-      result.current.memeState.messages[0].id = '';
+      result.current.memeState.messages[0]!.id = '';
     });
     
     validation = result.current.validateCurrentState();
@@ -131,9 +133,9 @@ describe('useMemeState', () => {
     const messages = result.current.memeState.messages;
     const lastTwoMessages = messages.slice(-2);
     
-    expect(lastTwoMessages[0].id).not.toBe(lastTwoMessages[1].id);
-    expect(lastTwoMessages[0].id).toMatch(/^msg_\d+_[a-z0-9]+$/);
-    expect(lastTwoMessages[1].id).toMatch(/^msg_\d+_[a-z0-9]+$/);
+    expect(lastTwoMessages[0]!.id).not.toBe(lastTwoMessages[1]!.id);
+    expect(lastTwoMessages[0]!.id).toMatch(/^msg_\d+_[a-z0-9]+$/);
+    expect(lastTwoMessages[1]!.id).toMatch(/^msg_\d+_[a-z0-9]+$/);
   });
 
   it('adds image to message correctly', () => {

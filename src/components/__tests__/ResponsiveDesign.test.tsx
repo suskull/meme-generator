@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import App from '../../App';
 
 // Mock window.matchMedia for responsive testing
-const mockMatchMedia = (query: string) => ({
+const mockMatchMedia = (query: string): MediaQueryList => ({
     matches: false,
     media: query,
     onchange: null,
@@ -11,7 +11,7 @@ const mockMatchMedia = (query: string) => ({
     removeListener: () => { },
     addEventListener: () => { },
     removeEventListener: () => { },
-    dispatchEvent: () => { },
+    dispatchEvent: () => true,
 });
 
 describe('Responsive Design', () => {
@@ -149,7 +149,6 @@ describe('Responsive Design', () => {
             // Check that buttons have adequate size for touch
             const buttons = screen.getAllByRole('button');
             buttons.forEach(button => {
-                const styles = window.getComputedStyle(button);
                 // Buttons should have adequate padding for touch targets
                 expect(button).toBeInTheDocument();
             });
